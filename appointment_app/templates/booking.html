@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'appointment_app/css/booking.css' %}">
+
+<div class="booking-container">
+    <h2 class="title">
+        {% if language == 'ka' %} დაჯავშნა {% else %} Booking {% endif %}
+    </h2>
+    <p class="subtitle">
+        {% if language == 'ka' %} გთხოვთ შეავსოთ ინფორმაცია და დაადასტუროთ ჯავშანი {% else %} Please fill in the details and confirm your booking {% endif %}
+    </p>
+
+    <form method="POST" enctype="multipart/form-data" class="booking-form">
+        {% csrf_token %}
+
+        <!-- Hidden Fields for Service, Date, and Time -->
+        <input type="hidden" name="service" value="{{ form.service.value }}">
+        <input type="hidden" name="date" value="{{ form.date.value }}">
+        <input type="hidden" name="time" value="{{ form.time.value }}">
+
+        <!-- User Details (Auto-Filled) -->
+        <div class="form-group">
+            <label>
+                {% if language == 'ka' %} სახელი: {% else %} First Name: {% endif %}
+            </label>
+            <input type="text" value="{{ form.first_name.value }}" disabled>
+        </div>
+
+        <div class="form-group">
+            <label>
+                {% if language == 'ka' %} გვარი: {% else %} Last Name: {% endif %}
+            </label>
+            <input type="text" value="{{ form.last_name.value }}" disabled>
+        </div>
+
+        <div class="form-group">
+            <label>
+                {% if language == 'ka' %} ტელეფონის ნომერი: {% else %} Phone Number: {% endif %}
+            </label>
+            <input type="text" value="{{ form.phone_number.value }}" disabled>
+        </div>
+
+        <div class="form-group">
+            <label>
+                {% if language == 'ka' %} ელ.ფოსტა: {% else %} Email: {% endif %}
+            </label>
+            <input type="email" value="{{ form.email.value }}" disabled>
+        </div>
+
+        <!-- Service Information -->
+        <div class="form-group">
+            <label>
+                {% if language == 'ka' %} სერვისი: {% else %} Service: {% endif %}
+            </label>
+            <input type="text" value="{{ form.service.value }}" disabled>
+        </div>
+
+        <div class="form-group">
+            <label>
+                {% if language == 'ka' %} თარიღი: {% else %} Date: {% endif %}
+            </label>
+            <input type="text" value="{{ form.date.value }}" disabled>
+        </div>
+
+        <div class="form-group">
+            <label>
+                {% if language == 'ka' %} დრო: {% else %} Time: {% endif %}
+            </label>
+            <input type="text" value="{{ form.time.value }}" disabled>
+        </div>
+
+        <div class="form-group" id="service-type-section" style="display: none;">
+            <label for="project_details">
+                {% if language == 'ka' %} კონსულტაციის ტიპი: {% else %} Consultation Type: {% endif %}:
+            </label>
+            {{ form.service_type }}
+        </div>
+
+        <div class="form-group">
+            <label for="project_details">
+                {% if language == 'ka' %} პროექტის აღწერა: {% else %} Project Description: {% endif %}
+            </label>
+            {{ form.project_details }}
+        </div>
+
+        <!-- File Upload (Only for Laser Cutting) -->
+        <div class="form-group" id="file-upload-section" style="display: none;">
+            <label for="file">
+                {% if language == 'ka' %} ატვირთეთ ფაილი (მხოლოდ PDF): {% else %} Upload File (PDF Only): {% endif %}
+            </label>
+            {{ form.file }}
+        </div>
+
+        <!-- Additional Fields for Consultation -->
+        <div class="form-group" id="meeting-type-section" style="display: none;">
+            <label for="service_type">
+                {% if language == 'ka' %} შეხვედრის ტიპი: {% else %} Meeting Type: {% endif %}
+            </label>
+            {{ form.meeting_type }}
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">
+            {% if language == 'ka' %} დაჯავშნა {% else %} Book Now {% endif %}
+        </button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const serviceInput = "{{ form.service.value }}";
+        const fileUploadSection = document.getElementById("file-upload-section");
+        const serviceTypeSection = document.getElementById("service-type-section");
+        const meetingeTypeSection = document.getElementById("meeting-type-section");
+
+        // Toggle sections based on service selection
+        if (serviceInput === "laser_cutting") {
+            fileUploadSection.style.display = "block";
+        } else if (serviceInput === "consultation") {
+            serviceTypeSection.style.display = "block";
+            meetingeTypeSection.style.display = "block";
+        }
+    });
+</script>
+{% endblock %}

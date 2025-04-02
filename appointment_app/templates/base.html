@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Appointment System{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'appointment_app/css/home.css' %}">
+    <link rel="icon" href="{% static 'appointment_app/assets/tittle_icon.png' %}" type="image/png">
+
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'appointment_app/assets/logosa.png' %}" alt="Logo" class="logo">
+            </a>
+        </div>
+        
+        <div class="center-links">
+            <a href="{% url 'home' %}" class="btn-primary">
+                {% if language == 'ka' %} მთავარი {% else %} Home {% endif %}
+            </a>
+            <a href="{% url 'my_appointments' %}" class="btn-primary">
+                {% if language == 'ka' %} ჩემი ჯავშნები {% else %} My Appointments {% endif %}
+            </a>
+        </div>
+
+        <div class="header-right">
+            <div class="span-wrapper">
+                <span class="name">{{ request.user.first_name }} {{ request.user.last_name }}</span>
+            </div>
+            <a href="{% url 'logout' %}">
+                <img src="{% static 'appointment_app/assets/logout.png' %}" alt="Logout" class="logo">
+            </a>
+            <form method="GET" action="" class="language-switcher">
+                <button type="submit" name="language" value="{% if language == 'ka' %}en{% else %}ka{% endif %}" class="lang-btn">
+                    {% if language == 'ka' %}
+                        <img src="{% static 'appointment_app/assets/us.png' %}" alt="English" class="flag">
+                    {% else %}
+                        <img src="{% static 'appointment_app/assets/georgia.png' %}" alt="ქართული" class="flag">
+                    {% endif %}
+                </button>
+            </form>                       
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

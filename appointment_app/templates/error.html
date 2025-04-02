@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>{% if language == 'ka' %} შეცდომა {% else %} Error {% endif %}</h2>
+    <p>{% if language == 'ka' %} არასწორი სერვისი იყო არჩეული {% else %} Invalid Service Selected {% endif %}</p>
+    <a href="{% url 'home' %}" class="btn btn-primary">
+        {% if language == 'ka' %} მთავარი გვერდი {% else %} Go to Home {% endif %}
+    </a>
+</div>
+{% endblock %}

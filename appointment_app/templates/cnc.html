@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %} 
+<link rel="stylesheet" href="{% static 'appointment_app/css/calendar.css' %}">
+
+<div class="main-container">
+   <div class="service-container">
+      <h3 class="box-text">
+         {% if language == 'ka' %}
+            აღნიშნული დანადგარის გამოყენება შესაძლებელია პროტოტიპირებისთვის, თუმცა წინასწარ აუცილებელია კონსულტაციის გავლა. შესაბამისად, გთხოვთ შეავსოთ კონსულტაციისთვის განკუთვნილ სარეგისტრაციო ფორმა. (საკონსულტაციო საათები განსაზღვრულია, ყოველ დღე, ორშაბათიდან პარასკევის ჩათვლით, 2:00 საათიდან 4:00 საათამდე)
+         {% else %}
+         The mentioned device can be used for prototyping; however, prior consultation is required. Therefore, please fill out the registration form designated for consultation. (Consultation hours are scheduled every day from Monday to Friday, from 2:00 PM to 4:00 PM.)
+         {% endif %}
+      </h3>
+      <button class="consultation">
+         <a href="{% url 'calendar' %}?service=consultation">
+            {% if language == 'ka' %} დაჯავშნე კონსულტაცია {% else %} Book a Consultation {% endif %}
+         </a>
+      </button>
+   </div>
+
+   <div class="specs-container">
+      <h2 class="specs-title">
+         {% if language == 'ka' %} დანადგარის შესახებ {% else %} About the Machine {% endif %}
+      </h2>
+      <ul class="specs-list">
+         <p>
+            {% if language == 'ka' %}
+               პროგრამირებადი ჩარხი ახორციელებს ჭრასა და ბურღვას კომპიუტერული ციფრული კონტროლის პრინციპით. ჩარხი მუშაობს ხეზე, ორგანულ მინაზე და სხვა ტიპის მყარ მასალაზე. პროგრამირებადი ჩარხი 4-ღერძიანია და შესაძლებლობას აძლევს ინოვატორებს, მეწარმეებსა და ხელოვანებს შექმნან 2D და 3D პროტოტიპები ისეთი სიზუსტით, რომლის ხელით შექმნაც შეუძლებელია ან საჭიროებს გაცილებით მეტ ადამიანურ და დროის რესურსს.
+            {% else %}
+            A programmable lathe performs cutting and drilling based on the principle of computer numerical control (CNC). The machine works with wood, acrylic, and other types of solid materials. The programmable lathe is 4-axis and enables innovators, entrepreneurs, and artists to create 2D and 3D prototypes with a level of precision that would be impossible to achieve manually or would require significantly more human and time resources.
+            {% endif %}
+         </p>
+      </ul>
+   </div>
+
+   <div class="specs-container">
+      <h2 class="specs-title">
+         {% if language == 'ka' %} დანადგარის მოხმარების წესები და პირობები {% else %} Machine Usage Rules and Conditions {% endif %}
+      </h2>
+      <ul class="specs-list">
+         <li><strong>
+            {% if language == 'ka' %} სამუშაო არეალი: {% else %} Work Area: {% endif %}
+         </strong> 1100 X 1000 mm</li>
+
+         <li><strong>
+            {% if language == 'ka' %} სამუშაო სიმაღლე: {% else %} Work Height: {% endif %}
+         </strong> 140 mm</li>
+
+         <li><strong>
+            {% if language == 'ka' %} სამუშაო მასალა: {% else %} Working Material: {% endif %}
+         </strong> 0.1 - 0.35 mm</li>
+      </ul>
+   </div>
+</div>
+
+{% endblock %}

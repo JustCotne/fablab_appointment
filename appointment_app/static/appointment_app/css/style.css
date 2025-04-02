@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+.main-container{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  position: relative;
+  max-width: 430px;
+  width: 100%;
+  background: #07294D;
+  padding: 34px;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  margin: 50px 0; /* Added margin for top and bottom spacing */
+}
+
+
+.wrapper h2 {
+  position: relative;
+  font-size: 22px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.wrapper h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 50px;
+  border-radius: 12px;
+  background: #A70000;
+}
+
+.wrapper form {
+  margin-top: 30px;
+}
+
+.wrapper form .input-box {
+  height: 52px;
+  margin: 18px 0;
+}
+
+form .input-box input,
+.input-box select {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding: 0 15px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+  border: 1.5px solid #C7BEBE;
+  border-bottom-width: 2.5px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.input-box input:focus,
+.input-box input:valid{
+  border-color: #A70000;
+}
+
+
+
+
+  .input-box.button input {
+    color: #fff;
+    letter-spacing: 1px;
+    border: none;
+    background: #A70000;
+    cursor: pointer;
+  }
+
+.input-box.button input:hover {
+  background: #A70000;
+}
+
+form .text h3 {
+  color: #ffffff;
+  width: 100%;
+  text-align: center;
+}
+
+form .text h3 a {
+  color: #A70000;
+  text-decoration: none;
+}
+
+form .text h3 a:hover {
+  text-decoration: underline;
+}
+
+
+.message-box {
+  background: #ffcccc;
+  color: #a70000;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.terms-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.terms-box input {
+  width: 18px;
+  height: 18px;
+  accent-color: #A70000;
+}
+
+.terms-box a {
+  color: #A70000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.terms-box a:hover {
+  text-decoration: underline;
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  width: 100%;
+  color: #A70000;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 1; /* Ensures it takes available space pushing items to the right */
+}
+
+.language-switcher {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.lang-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.lang-btn img {
+  width: 40px;
+  border: 2px solid black;
+  border-radius: 3px;
+  
+}
+
+

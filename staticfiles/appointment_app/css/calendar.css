@@ -1,0 +1,242 @@
+/* General Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+/* Calendar Container */
+.calendar-container {
+    width: 80%;
+    background: #07294d;
+    color: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 50px;
+    text-align: center;
+}
+
+/* Date Selection - Horizontal Boxes */
+.date-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.date-box {
+    padding: 12px 25px;
+    border-radius: 8px;
+    aspect-ratio: 1 / 0.7;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s ease-in-out;
+    color: #07294d;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    min-width: 100px;
+}
+
+/* Alternate Date Box Colors */
+.date-box:nth-child(4n+1) { background: #fad755; }
+.date-box:nth-child(4n+2) { background: #fcb4a9; }
+.date-box:nth-child(4n+3) { background: #7adbd5; }
+.date-box:nth-child(4n+4) { background: #be9bc6; }
+
+/* Hover & Selected State */
+.date-box.active {
+    background: #69be6e !important;
+    color: rgb(246, 241, 241);
+}
+
+.date-box:hover {
+    transform: scale(1.1);
+}
+
+/* Time Slots - Dropdown */
+.time-slot-container {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Time Slot Buttons */
+.time-slot {
+    background: #69be6e;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    font-weight: bold;
+    border: none;
+}
+
+.time-slot.active {
+    background: #514cfa !important;
+    color: white;
+}
+
+.time-slot:hover {
+    transform: scale(1.1);
+    background: #9bd79f;
+}
+
+/* Consultation Button */
+.service-container .consultation {
+    background-color: #A70000;
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 400;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.service-container .consultation a {
+    color: white; /* Link color inside the button */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.service-container .consultation:hover {
+    background-color: #9b0000; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly larger on hover */
+}
+
+/* Button Styling (For other buttons) */
+.button {
+    color: #fff;
+    letter-spacing: 1px;
+    border: none;
+    background: #A70000;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding: 0 15px;
+    font-size: 17px;
+    font-weight: 400;
+    color: #333;
+    border: 1.5px solid #C7BEBE;
+    border-bottom-width: 2.5px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+/* Service Container */
+.service-container {
+    width: 80%;
+    height: 400px;
+    background-color: #07294d;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 80px;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Specifications Section */
+.specs-container {
+    width: 80%;
+    text-align: left;
+    margin-top: 30px;
+}
+
+.specs-title {
+    font-size: 22px;
+    color: #07294d;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.specs-list {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.specs-list li {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Slot Section */
+.slot-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.slot-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Header */
+h3 {
+    color: #A70000;
+}
+
+/* Link Styling */
+a {
+    color: #A70000;
+    font-weight: bold;
+}
+
+.continue-btn {
+    display: block; 
+    margin: 30px auto 0;
+    max-width: 150px;
+    background-color: #A70000;
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.continue-btn:hover {
+    background-color: #8A0000;
+    transform: scale(1.05);
+}
+
+
+.parent-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Optional, centers vertically */
+}

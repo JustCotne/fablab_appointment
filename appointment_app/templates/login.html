@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'appointment_app/css/style.css' %}">
+    <link rel="icon" href="{% static 'appointment_app/assets/tittle_icon.png' %}" type="image/png">
+</head>
+<body>
+    <header class="header">
+        <div class="header-right">
+            <form method="GET" action="" class="language-switcher">
+                <button type="submit" name="language" value="{% if language == 'ka' %}en{% else %}ka{% endif %}" class="lang-btn">
+                    {% if language == 'ka' %}
+                        <img src="{% static 'appointment_app/assets/us.png' %}" alt="English" class="flag">
+                    {% else %}
+                        <img src="{% static 'appointment_app/assets/georgia.png' %}" alt="ქართული" class="flag">
+                    {% endif %}
+                </button>
+            </form>                       
+        </div>
+    </header>
+
+  <div class="main-container">
+    <div class="wrapper">
+        <h2>{% if language == 'ka' %} ავტორიზაცია {% else %} Login {% endif %}</h2>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="input-box">   
+                <input type="email" name="email" placeholder="{% if language == 'ka' %} ელ.ფოსტა {% else %} Email {% endif %}" required>
+            </div>
+            <div class="input-box">
+                <input type="password" name="password" placeholder="{% if language == 'ka' %} პაროლი {% else %} Password {% endif %}" required>
+            </div>
+            <div>
+                {% if messages %}
+                <div class="message-box">
+                    {% for message in messages %}
+                        <p class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="input-box button">
+                <input type="Submit" value="{% if language == 'ka' %} შესვლა {% else %} Login {% endif %}">
+            </div>
+            <div class="text">
+                <h3>{% if language == 'ka' %} არ გაქვს ანგარიში? {% else %} Don't have an account? {% endif %}
+                    <a href="{% url 'register' %}">{% if language == 'ka' %} რეგისტრაცია {% else %} Register {% endif %}</a>
+                </h3>
+                <h3><a href="{% url 'password_reset' %}">{% if language == 'ka' %} დაგავიწყდა პაროლი? {% else %} Forgot Password? {% endif %}</a></h3>
+            </div>
+        </form>
+    </div>
+  </div>  
+  
+</body>
+</html>

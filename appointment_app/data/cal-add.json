@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "social-cube",
+  "private_key_id": "1bc5f8e348bf0ed3805959f5e4fbc6b41e0b7345",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC9aTJhcQOva8bK\nqA1zgWiVPKwQAoFrhyvtXE88GzDJl9AL34vakc71RAh5lutoF9YzUk/cNmpGjdkI\nVgcntzrrjKB6grWYRSpyyXi7GUaFagwfLlBu9Tps7lr38le8bK3ncHk7HiPebvAP\nko8Hgt6tLDHfBRiIaZYukFS90LK8CNJ3v5DA0GN7ICcbDXmehuo7A/BZe6ecoZCE\n5B+jGXZgbMIUu2umJE+4T4C329D+OZYmYghObWsA9fGYLCjsRqb2TR6m2UsRbds/\ndpNIerFDs2TIlZXF8qbfhqFfJWifSIP3qfdEf5Nva8FYPBSP/ItlYTb6/Mb2yTih\naR2ANzd9AgMBAAECggEAHNXbiCRq5wqq3buo1JP3u88xSKdWVEGPU+2Q2Hnb5beE\nF5KlmWryOA+ZP11/or4M64zqldVTkkB9Bn0GTisMasNiw6k2LnjKe2V686I8717+\nJRm+wAL7Ao4Pm54Gx6uUlrPeQ5GVQgM0mRelnlieQCcxbnOO+7wgqMprRDx17BR4\nzScojNaKfmNHM8iyzWbIOZ3cVmivQgmC3Wv463XFdYFvy1XbzJTtr3XgpKMlw18A\nLaQK/QvZwqKU/muSPx024rF+bg0xYDo3Hh9rLTN1g9uY8ZHT5j561eQaLMgTn3sh\nDIHVILUn+n1OdxnlYgsbc66Y7Yfm+mN0Ytc1je7XdwKBgQD6vZJQ6C3CLITfjuFz\nU4kvkkDm9ooCA/uoV0mex30Fl+cRWnj541fe5IfAUaNR40LqbXgNBVsqdoUiob9u\nKM5G4KFNee8RQ7go9pdXMm5Ky6bvEVzKyFmqrs7Sfb2NsubhocrFTax7dj/5Kkp2\n56D0uVSieQ4/eQBpADLknnFDVwKBgQDBYkwQfk94fYd1zvJb5V49nESpJr1hXDGd\nvopMu/KhPJiGTGPMDhZ/VNzclKJGzj3sZTs8F6t5GeopZW9XqlNn1OYu1RhkSIxD\nBB1XmhWEL7BGC9u4ss9owmaHUUDpg1iEGPqAQYstKMgiOwvL6/A++N6jzinbIGkH\ncCm4eWJLSwKBgAgH2E7VENoeOOc8GUZrT4KBiaicDtF/tSiwGwCF3SA3vEPXBPbj\n7CWMZjinpLZzs+n0NZsdJ81VXHA+g/YQQoMMoL3tgNWpuJU/SJuXVub4XNFdWf54\nqj6IOMGPG2oVZ8WkO+1TzolpwSTG0Pm783DDGs3VWLp5sqSqR/cAiBojAoGAFkQ1\nMej5SYxanov3h/E/CqUFmtxlDeLJq7oWvoMdiscpYL1G+GXe3UZuL8/FZ5Wzt5Zo\nXaD0E3uSZLXTPirUc64l2tqadmGMFONSZZXOSGwdRdNzty6PhyZrG8WVTc3b0Un2\n/fGODuMVOCvITfCatwV8zSud0idHMJ4Pj7gaQ0UCgYEA8xqGB3cfsM1/kIa7rUk6\nzI/MHjopHf8Gt2IbTGvIouCXXkqIDfOWTNmYv/WG2nOKLCKqH3eTKrLp4XlxBMV5\niQLSpRw69pxPVjYZbqjqgJOBupfjVdWmGErcZcg4Py6fW86c2XxIX8anaF4FuR8w\ntEGCL4EaQS77lqEKwfw7OXo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "calendar-add@social-cube.iam.gserviceaccount.com",
+  "client_id": "103805283304298804268",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/calendar-add%40social-cube.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

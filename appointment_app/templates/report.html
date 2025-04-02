@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block content %}
+<link rel="stylesheet" href="{% static 'appointment_app/css/report.css' %}">
+    <div class="form-container">
+        <h2>რეპორტის ფორმა / Report Form</h2>
+        <form action="https://docs.google.com/forms/u/3/d/e/1FAIpQLSfrITnMeQ0qsYKhT46h-cZGAVFyEBQR8FkgV1ArBNJNlXqsAw/formResponse" method="POST" target="_blank">
+            
+            <div class="form-group">
+                <input type="text" name="entry.1496476362" id="name" 
+                       placeholder="სახელი და გვარი / Name and Last name" 
+                       value="{{ user_data.first_name }} {{ user_data.last_name }}" required> 
+            </div>
+
+            <div class="form-group">
+                <input type="email" name="entry.1714399410" id="email" 
+                       placeholder="ელ.ფოსტა / Email" 
+                       value="{{ user_data.email }}" required>
+            </div>
+            
+            <div class="form-group">
+                <input type="text" name="entry.689502191" id="phone_number" 
+                       placeholder="ტელეფონის ნომერი / Phone number" 
+                       value="{{ user_data.phone_number }}" required>
+            </div>
+
+            <div class="form-group">
+                <select name="entry.1565200805" required>
+                    <option value="">ფაკულტეტი / School</option>
+                    <option value="მეცნიერებათა და ხელოვნების ფაკულტეტი / School of Arts and Sciences" 
+                            {% if user_data.faculty == 'მეცნიერებათა და ხელოვნების ფაკულტეტი' %} selected {% endif %}>
+                            მეცნიერებათა და ხელოვნების ფაკულტეტი / School of Arts and Sciences
+                    </option>
+                    <option value="საბუნებისმეტყველო მეცნიერებებისა და მედიცინის ფაკულტეტი" 
+                            {% if user_data.faculty == 'საბუნებისმეტყველო მეცნიერებებისა და მედიცინის ფაკულტეტი' %} selected {% endif %}>
+                            საბუნებისმეტყველო მეცნიერებებისა და მედიცინის ფაკულტეტი
+                    </option>
+                    <option value="ბიზნესის, ტექნოლოგიისა და განათლების ფაკულტეტი / Business and Technologies School" 
+                            {% if user_data.faculty == 'ბიზნესის, ტექნოლოგიისა და განათლების ფაკულტეტი' %} selected {% endif %}>
+                            ბიზნესის, ტექნოლოგიისა და განათლების ფაკულტეტი / Business and Technologies School
+                    </option>
+                    <option value="სამართლის სკოლა / School of Law" 
+                            {% if user_data.faculty == 'სამართლის სკოლა' %} selected {% endif %}>
+                            სამართლის სკოლა / School of Law
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="entry.267069495" id="program" 
+                       placeholder="პროგრამა / Program" 
+                       value="{{ user_data.program }}" required>
+            </div>
+
+            <div class="form-group">
+                <select name="entry.809048235" required>
+                    <option value="">კურსი / Course</option>
+                    <option value="ბაკალავრი I / Bachelor I">ბაკალავრი I / Bachelor I</option>
+                    <option value="ბაკალავრი II / Bachelor II">ბაკალავრი II / Bachelor II</option>
+                    <option value="ბაკალავრი III / Bachelor III">ბაკალავრი III / Bachelor III</option>
+                    <option value="ბაკალავრი IV / Bachelor III">ბაკალავრი IV / Bachelor III</option>
+                    <option value="ბაკალავრი IV / Bachelor III">ბაკალავრი IV / Bachelor III</option>
+                    <option value="მაგისტრატურა I / Masters I">მაგისტრატურა I / Masters I</option>
+                    <option value="მაგისტრატურა II / Masters II">მაგისტრატურა II / Masters II</option>
+                    <option value="დოქტორანტურა / Doctoral">დოქტორანტურა / Doctoral</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <select name="entry.843351979" id="info_source" required>
+                    <option value="">საიდან გაიგეთ ფაბლაბის შესახებ ? / where did you get information about FABLAB ?</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="უნივერსიტეტში / at University">უნივერსიტეტში / at University</option>
+                    <option value="მეგობრისგან / From a friend">მეგობრისგან / From a friend</option>
+                    <option value="მონაწილეოა მიმიღია ფაბლაბის პროექტში / I have participated in FABLAB project">მონაწილეოა მიმიღია ფაბლაბის პროექტში / I have participated in FABLAB project</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <select name="entry.1769515240" id="machinery_used" required>
+                    <option value="">რა ტიპის დანადგარები/მომსახურება გამოიყენეთ ფაბლაბში ? / what kind of machinery/service did u use/get at FABLAB ?</option>
+                    <option value="3D პრინტერი / 3D printer">3D პრინტერი / 3D printer</option>
+                    <option value="ლაზერისმჭრელი აპარატი / Laser cutter">ლაზერისმჭრელი აპარატი / Laser cutter</option>
+                    <option value="2D/3D ნახაზების შექმნა / creation of 2D/3D model">2D/3D ნახაზების შექმნა / creation of 2D/3D model</option>
+                    <option value="ვაკუუმფორმირების აპარატი / vacuum former">ვაკუუმფორმირების აპარატი / vacuum former</option>
+                    <option value="Other">სხვა / Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <textarea name="entry.1208169026" id="description" rows="4" 
+                placeholder="პროექტის აღწერა / Project Description" required>{{ user_data.project_description }}</textarea>
+            </div>
+            
+            <div class="form-group" required>
+                <input type="text" name="entry.133106277" id="comment" placeholder="დამატებითი კომენტარი/ Additional comment">
+            </div>
+
+            <button type="submit">წარდგენა / Submit</button>
+
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            let infoSource = document.getElementById("info_source").value;
+            let machineryUsed = document.getElementById("machinery_used").value;
+    
+            if (infoSource === "" || machineryUsed === "") {
+                alert("გთხოვთ შეცვალოთ არჩევანი! / Please select an option before submitting.");
+                return false;
+            }
+    
+            return true;
+        }
+    </script>
+{% endblock %}

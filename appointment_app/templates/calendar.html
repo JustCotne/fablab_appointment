@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'appointment_app/css/calendar.css' %}">
+
+<div class="main-container">
+    <div class="calendar-container">
+        <h2>
+            {% if language == 'ka' %} აირჩიეთ თარიღი და დრო {% else %} Select a Date and Time {% endif %}
+        </h2>
+        <br>
+        {% if language == 'ka' %}
+        <p><strong>თქვენი სერვისი:</strong> 
+            {% if service == "laser_cutting" %}
+            ლაზერული ჭრა {% else %} კონსულტაცია {% endif %}
+        </p>
+        {% else %}
+        <p><strong>Your Service:</strong> 
+            {% if service == "laser_cutting" %}
+            Laser Cutting {% else %} Consultation {% endif %}
+        </p>
+        
+        {% endif %}
+
+        <p><strong>
+            {% if language == 'ka' %} დარჩენილი ჯავშნების ოდენობა: {% else %} Remaining Bookings: {% endif %}
+        </strong> {{ request.user.booking_limit }}</p>
+        
+        <div class="date-container">
+            {% for date in available_dates %}
+                <div class="date-box" data-date="{{ date }}">{{ date }}</div>
+            {% endfor %}
+        </div>
+    
+
+        {% for date, times in time_slots.items %}
+        <div class="time-slot-container" id="slots-{{ date }}">
+            {% if times %}
+                <h3 class="slot-title">
+                    {% if language == 'ka' %} {% if service == "laser_cutting" %}
+                    <h3 class="slot-title">გაითვალისწინეთ რომ თითოეული ვიზიტის ხანგრძლივობა არის 1 საათი და 30 წუთი.</h3>
+                    {% elif service == "consultation" %}
+                        <h3 class="slot-title">გაითვალისწინეთ რომ თითოეული ვიზიტის ხანგრძლივობა არის 20 წუთი.</h3>
+                    {% else %}
+                        <h3 class="slot-title">აირჩიეთ დრო:</h3>
+                    {% endif %} {% else %} 
+                    {% if service == "laser_cutting" %}
+                    <h3 class="slot-title">Please note that the duration of each visit is 1 hour and 30 minutes.</h3>
+                    {% elif service == "consultation" %}
+                        <h3 class="slot-title">Please note that the duration of each visit is 20 minutes.</h3>
+                    {% else %}
+                        <h3 class="slot-title">Select time:</h3>
+                    {% endif %}
+                    {% endif %}
+
+                    
+                </h3>
+                <div class="slot-buttons">
+                    {% for time in times %}
+                        <button class="time-slot" data-date="{{ date }}" data-time="{{ time }}">
+                            {{ time }}
+                        </button>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="no-availability">
+                    {% if language == 'ka' %} თავისუფალი დრო არ არის {% else %} No Available Time Slots {% endif %}
+                </p>
+            {% endif %}
+        </div>
+        <div class="parent-container">
+        <a id="continue-{{ date }}" class="continue-btn" style="display: none;">
+            {% if language == 'ka' %} გაგრძელება {% else %} Continue {% endif %}
+        </a>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="specs-container">
+        {% if service == "laser_cutting" %}
+            <h2 class="specs-title">
+                {% if language == "ka" %} დანადგარის მოხმარების წესები და პირობები {% else %} Machine Usage Rules and Conditions {% endif %}
+            </h2>
+            <ul class="specs-list">
+                <li><strong>
+                    {% if language == "ka" %} დასამუშავებელი მასალის მაქსიმალური ზომა: {% else %} Maximum material size: {% endif %}
+                </strong> 700 X 500 mm</li>
+    
+                <li><strong>
+                    {% if language == "ka" %} დანადგარისთვის შესაძლებელია შემდეგი მასალების გამოყენება: {% else %} Supported materials and processing capabilities: {% endif %}
+                </strong> 
+                    <ul style="margin-left: 40px;">
+                        <li>
+                            {% if language == "ka" %} ორგანული მინის ჭრა და გრავირება: 1 – 3მმ {% else %} (Acrylic cutting and engraving): 1 – 3 mm {% endif %}
+                        </li>
+                        <li>
+                            {% if language == "ka" %} ფანერის ჭრა და გრავირება: 1 – 3მმ {% else %} Plywood (cutting and engraving): 1 – 3 mm {% endif %}
+                        </li>
+                        <li>
+                            {% if language == "ka" %} ტყავისა და ტყავის შემცვლელის გრავირება და ჭრა {% else %} Leather and leather substitute (engraving and cutting) {% endif %}
+                        </li>
+                        <li>
+                            {% if language == "ka" %} მუყაოს ჭრა: 1 – 1,5მმ {% else %} Cardboard (cutting and engraving): 1 – 1.5 mm {% endif %}
+                        </li>
+                    </ul>
+                </li>
+      
+                <li><strong>
+                    {% if language == "ka" %} ფაილის ფორმატი: {% else %} File Format: {% endif %}
+                </strong> PDF</li>
+    
+                <li><strong>
+                    {% if language == "ka" %} ფაილის შიგთავსი: {% else %} File content requirements: {% endif %}
+                </strong> 
+                    {% if language == "ka" %}
+                        ამოსაჭრელი ობიექტები ფაილში უნდა იყოს შავ ფერში (r:0 g:0 b:0), ხოლო დასაგრავირებელი ობიექტები უნდა იყოს წითელ ფერში (r:255 g:0 b:0). ობიექტების ზომები უნდა ემთხვეოდეს რეალურ ზომებს და არ უნდა იყოს მაშტაბში.
+                    {% else %}
+                    Objects for cutting must be in black (R: 0, G: 0, B: 0), and Objects for engraving must be in red (R: 255, G: 0, B: 0). All objects must be in real dimensions, not scaled.
+                    {% endif %}
+                </li>
+            </ul>
+    
+        {% elif service == "consultation" %}
+            <h2 class="specs-title">
+                {% if language == "ka" %} კონსულტაციის მიზანია: {% else %} Purpose of the Consultation: {% endif %}
+            </h2>
+            <ul class="specs-list">
+                <li>
+                    {% if language == "ka" %} მომხმარებლების მხარდაჭერა მათი იდეების განვითარების პროცესში {% else %} Supporting users in developing their ideas {% endif %}
+                </li>
+                <li>
+                    {% if language == "ka" %} ტექნიკური და ინჟინრული გამოწვევების გადაჭრა {% else %} Solving technical and engineering challenges {% endif %}
+                </li>
+                <li>
+                    {% if language == "ka" %} დანადგარების გამოყენების პრინციპების გაცნობა {% else %} Understanding the principles of machine usage {% endif %}
+                </li>
+                <li>
+                    {% if language == "ka" %} პროექტის სწორად დაგეგმვა და შესრულების პროცესის გამარტივება {% else %} Proper project planning and execution {% endif %}
+                </li>
+            </ul>
+        {% else %}
+            <p></p>
+        {% endif %}
+    </div>
+    
+    {% if service == "laser_cutting" %}
+    <div class="specs-container">
+        <h2 class="specs-title">
+            {% if language == "ka" %}
+                სხვა დეტალებთან დაკავშირებით გაიარეთ კონსულტაცია fablab iliauni-ის გუნდთან
+                <a href="{% url 'calendar' %}?service=consultation">დაჯავშნე კონსულტაცია</a>
+            {% else %}
+                For further details, consult with the fablab Iliauni team
+                <a href="{% url 'calendar' %}?service=consultation">Book a Consultation</a>
+            {% endif %}
+        </h2>
+    </div>
+    {% endif %}
+    
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".date-box").forEach(dateBox => {
+        dateBox.addEventListener("click", function () {
+            // Remove active class from all date-box elements
+            document.querySelectorAll(".date-box").forEach(box => box.classList.remove("active"));
+
+            // Add active class to the clicked date box
+            this.classList.add("active");
+
+            // Show corresponding time slots
+            const selectedDate = this.getAttribute("data-date");
+            const slotContainer = document.getElementById(`slots-${selectedDate}`);
+            document.querySelectorAll(".time-slot-container").forEach(el => {
+                if (el !== slotContainer) el.style.display = "none";
+            });
+            slotContainer.style.display = "block";
+        });
+    });
+
+    document.querySelectorAll(".time-slot").forEach(button => {
+        button.addEventListener("click", function () {
+            const date = this.getAttribute("data-date");
+            const time = this.getAttribute("data-time");
+
+            // Remove active class from all time-slot buttons for the selected date
+            document.querySelectorAll(`.time-slot[data-date="${date}"]`).forEach(btn => btn.classList.remove("active"));
+
+            // Add active class to the clicked time slot
+            this.classList.add("active");
+
+            // Show continue button
+            document.getElementById(`continue-${date}`).href = `/booking/?service={{ service }}&date=${date}&time=${time}`;
+            document.getElementById(`continue-${date}`).style.display = "block";
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'appointment_app/css/my_appointments.css' %}">
+
+<div class="appointments-container">
+    <h2 style="text-align: center; font-size: 20px; margin-bottom: 20px;">
+        {% if language == 'ka' %} ჩემი ჯავშნები {% else %} My Appointments {% endif %}
+    </h2>
+
+    {% if appointments %}
+        {% for appointment in appointments %}
+        <div class="appointment-card">
+            <div class="appointment-details">
+                <!-- Dynamically set picture background & image -->
+                <div class="picture" style="
+                    {% if appointment.service == 'laser_cutting' %} background: #feb600;
+                    {% elif appointment.service == '3d_printing' %} background: #4CAF50;
+                    {% elif appointment.service == 'cnc' %} background: #eb6666;
+                    {% elif appointment.service == 'consultation' %} background: #54bad9;
+                    {% endif %}">
+                    <img 
+                        src="{% if appointment.service == 'laser_cutting' %}
+                                {% static 'appointment_app/assets/laser-cutting.png' %}
+                             {% elif appointment.service == '3d_printing' %}
+                                {% static 'appointment_app/assets/3d-printer.png' %}
+                             {% elif appointment.service == 'cnc' %}
+                                {% static 'appointment_app/assets/drilling.png' %}
+                             {% elif appointment.service == 'consultation' %}
+                                {% static 'appointment_app/assets/consultation.png' %}
+                             {% endif %}" 
+                        alt="{{ appointment.service }}">
+                </div>
+
+                <!-- Display service info -->
+                <div class="appointment-info">
+                    <p><strong>
+                        {% if language == 'ka' %} სერვისი: {% else %} Service: {% endif %}
+                    </strong>
+                        {% if appointment.service == "laser_cutting" %}
+                            {% if language == 'ka' %} ლაზერული ჭრა {% else %} Laser Cutting {% endif %}
+                        {% elif appointment.service == "3d_printing" %}
+                            {% if language == 'ka' %} 3D პრინტერი {% else %} 3D Printing {% endif %}
+                        {% elif appointment.service == "cnc" %}
+                            {% if language == 'ka' %} პროგრამირებადი ჩარხი {% else %} CNC Machining {% endif %}
+                        {% elif appointment.service == "consultation" %}
+                            {% if language == 'ka' %} კონსულტაცია {% else %} Consultation {% endif %}
+                        {% else %} {{ appointment.service }} {% endif %}
+                    </p>
+                    <p><strong>{% if language == 'ka' %} თარიღი: {% else %} Date: {% endif %}</strong> 
+                        {{ appointment.date|date:"Y-m-d" }}
+                    </p>
+                    <p><strong>{% if language == 'ka' %} დრო: {% else %} Time: {% endif %}</strong> {{ appointment.time }}</p>
+                </div>
+            </div>
+            <div class="button-container">
+                {% if appointment.can_report %}
+                <a class="empty-btn" 
+                    href="{% url 'report' appointment.id %}">
+                    {% if appointment.report_submitted %}
+                        {% if language == 'ka' %} რეპორტი გაგზავნილია {% else %} Report Sent {% endif %}
+                    {% else %}
+                        {% if language == 'ka' %} რეპორტი {% else %} Report {% endif %}
+                    {% endif %}
+                </a>
+                {% endif %}
+                {% if appointment.can_cancel %}
+                    <a href="{% url 'cancel_booking' appointment.id %}" class="cancel-btn">
+                        {% if language == 'ka' %} გაუქმება {% else %} Cancel {% endif %}
+                    </a>
+                {% else %}
+                    <button class="cant-cancel-btn" disabled>
+                        {% if language == 'ka' %} ვერ გაუქმდება {% else %} Cannot Cancel {% endif %}
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p style="text-align: center; color: gray;">
+            {% if language == 'ka' %} არ არის დანიშნული შეხვედრები {% else %} No upcoming appointments. {% endif %}
+        </p>
+    {% endif %}
+</div>
+
+{% endblock %}

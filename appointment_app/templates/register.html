@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if language == 'ka' %} რეგისტრაცია {% else %} Registration {% endif %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'appointment_app/css/style.css' %}">
+    <link rel="icon" href="{% static 'appointment_app/assets/tittle_icon.png' %}" type="image/png">
+</head>
+<body>
+  
+  <header class="header">
+    <div class="header-right">
+        <form method="GET" action="" class="language-switcher">
+            <button type="submit" name="language" value="{% if language == 'ka' %}en{% else %}ka{% endif %}" class="lang-btn">
+                {% if language == 'ka' %}
+                    <img src="{% static 'appointment_app/assets/us.png' %}" alt="English" class="flag">
+                {% else %}
+                    <img src="{% static 'appointment_app/assets/georgia.png' %}" alt="ქართული" class="flag">
+                {% endif %}
+            </button>
+        </form>                       
+    </div>
+</header>
+<div class="main-container">
+  <div class="wrapper">
+    <h2>{% if language == 'ka' %} რეგისტრაცია {% else %} Registration {% endif %}</h2>
+    <form method="POST" action="">
+        {% csrf_token%}
+
+        <div class="input-box">
+          {{ form.first_name }}
+        </div>
+        <div class="input-box">
+          {{ form.last_name }}
+        </div>
+        <div class="input-box">
+          {{ form.phone_number }}
+        </div>
+        <div class="input-box">
+          {{ form.faculty }}
+        </div>
+        <div class="input-box">
+          {{ form.program }}
+        </div>      
+        <div class="input-box">
+          {{ form.email }}
+        </div>
+        <div class="input-box">
+          {{ form.password1 }}
+        </div>
+        <div class="input-box">
+          {{ form.password2 }}
+        </div>
+
+        {% if form.errors %}
+        <ul>
+            {% for field_errors in form.errors.values %}
+                {% for error in field_errors %}
+                    <li style="color: red;">{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <div class="terms-box">
+          <input type="checkbox" id="terms" name="terms" required>
+          <label for="terms">
+              {% if language == 'ka' %}
+                  ვეთანხმები <a href="{% static 'appointment_app/assets/pdf/წესები და პირობები ka.pdf' %}" target="_blank">წესებს და პირობებს</a>
+              {% else %}
+                  I agree to the <a href="{% static 'appointment_app/assets/pdf/terms_and_conditions_en.pdf' %}" target="_blank">terms and conditions</a>
+              {% endif %}
+          </label>
+      </div>
+      
+      <div class="input-box button">
+        <input type="Submit" value="{% if language == 'ka' %} რეგისტრაცია {% else %} Register {% endif %}">
+      </div>
+      <div class="text">
+        <h3>
+          {% if language == 'ka' %} უკვე გაქვს ანგარიში? {% else %} Already have an account? {% endif %}
+          <a href="{% url 'login' %}">{% if language == 'ka' %} შესვლა {% else %} Login {% endif %}</a>
+        </h3>
+      </div>
+    </form>
+  </div>
+</div>
+  
+
+</body>
+
+<script>
+  var form_fields = document.getElementsByTagName('input');
+  form_fields[1].placeholder='{% if language == "ka" %} სახელი... {% else %} First Name... {% endif %}';
+  form_fields[2].placeholder='{% if language == "ka" %} გვარი... {% else %} Last Name... {% endif %}';
+  form_fields[3].placeholder='{% if language == "ka" %} ტელეფონის ნომერი... {% else %} Phone Number... {% endif %}';
+  form_fields[4].placeholder='{% if language == "ka" %} პროგრამა... {% else %} Program... {% endif %}';
+  form_fields[5].placeholder='{% if language == "ka" %} ელ.ფოსტა (iliauni.edu.ge)... {% else %} Email (iliauni.edu.ge)... {% endif %}';
+  form_fields[6].placeholder='{% if language == "ka" %} პაროლი... {% else %} Password... {% endif %}';
+  form_fields[7].placeholder='{% if language == "ka" %} გაიმეორეთ პაროლი... {% else %} Repeat Password... {% endif %}';
+
+  for (var field in form_fields){	
+      form_fields[field].className += ' form-control';
+  }
+
+  // Styling the faculty dropdown
+  var facultyField = document.getElementsByName("faculty")[0];
+  facultyField.className += " form-control";
+</script>
+
+</html>

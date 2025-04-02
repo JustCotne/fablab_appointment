@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block content %}
+<div class="container">
+    <a href="{% url 'calendar' %}?service=laser_cutting" class="option option1">
+        <img src="{% static 'appointment_app/assets/laser-cutting.png' %}" alt="Laser Cutting">
+        <span class="option-text">
+            {% if language == 'ka' %} ლაზერული ჭრა {% else %} Laser Cutting {% endif %}
+        </span>
+    </a>
+    <a href="{% url '3d_printing' %}" class="option option2">
+        <img src="{% static 'appointment_app/assets/3d-printer.png' %}" alt="3D Printing">
+        <span class="option-text">
+            {% if language == 'ka' %} 3D პრინტერი {% else %} 3D Printing {% endif %}
+        </span>
+    </a>
+    <a href="{% url 'cnc' %}" class="option option3">
+        <img src="{% static 'appointment_app/assets/drilling.png' %}" alt="CNC Machine">
+        <span class="option-text">
+            {% if language == 'ka' %} პროგრამირებადი ჩარხი {% else %} CNC Machine {% endif %}
+        </span>
+    </a>
+    <a href="{% url 'calendar' %}?service=consultation" class="option option4">
+        <img src="{% static 'appointment_app/assets/consultation.png' %}" alt="Consultation">
+        <span class="option-text">
+            {% if language == 'ka' %} კონსულტაცია {% else %} Consultation {% endif %}
+        </span>
+    </a>
+</div>
+{% endblock %}

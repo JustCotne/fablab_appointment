@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %} 
+<link rel="stylesheet" href="{% static 'appointment_app/css/calendar.css' %}">
+
+<div class="main-container">
+   <div class="service-container">
+      <h3 class="box-text">
+         {% if language == 'ka' %}
+            აღნიშნული დანადგარის გამოყენება შესაძლებელია პროტოტიპირებისთვის, თუმცა წინასწარ აუცილებელია კონსულტაციის გავლა. შესაბამისად, გთხოვთ შეავსოთ კონსულტაციისთვის განკუთვნილ სარეგისტრაციო ფორმა. (საკონსულტაციო საათები განსაზღვრულია, ყოველ დღე, ორშაბათიდან პარასკევის ჩათვლით, 2:00 საათიდან 4:00 საათამდე)
+         {% else %}
+         The mentioned device can be used for prototyping; however, prior consultation is required. Therefore, please fill out the registration form designated for consultation. (Consultation hours are scheduled every day from Monday to Friday, from 2:00 PM to 4:00 PM.)
+         {% endif %}
+      </h3>
+      <button class="consultation">
+         <a href="{% url 'calendar' %}?service=consultation">
+            {% if language == 'ka' %} დაჯავშნე კონსულტაცია {% else %} Book a Consultation {% endif %}
+         </a>
+      </button>
+   </div>
+
+   <div class="specs-container">
+      <h2 class="specs-title">
+         {% if language == 'ka' %} დანადგარის შესახებ {% else %} About the Device {% endif %}
+      </h2>
+      <ul class="specs-list">
+         <p>
+            {% if language == 'ka' %}
+               3D პრინტერი არის მოწყობილობა, რომელიც ციფრული მოდელის საფუძველზე ქმნის სამგანზომილებიან ობიექტებს. ეს ტექნოლოგია საშუალებას აძლევს მომხმარებლებს დაამზადონ პროტოტიპები, ფუნქციური ნაწილები და ა.შ. სწრაფად და მინიმალური დანახარჯით.
+            {% else %}
+            A 3D printer is a device that creates three-dimensional objects based on a digital model. This technology allows users to produce prototypes, functional parts, and more quickly and with minimal cost.
+            {% endif %}
+         </p>
+      </ul>
+   </div>
+
+   <div class="specs-container">
+      <h2 class="specs-title">
+         {% if language == 'ka' %} დანადგარის მოხმარების წესები და პირობები {% else %} Machine Usage Rules and Conditions {% endif %}
+      </h2>
+      <ul class="specs-list">
+         <li><strong>
+            {% if language == 'ka' %} მასალის მაქსიმალური გაბარიტები: {% else %} Maximum Printing size: {% endif %}
+         </strong> 300 x 300 x 300 mm or 220 x 220 x 250 mm</li>
+
+         <li><strong>
+            {% if language == 'ka' %} ბეჭდვის მაქსიმალური სიჩქარე: {% else %} Maximum Printing Speed: {% endif %}
+         </strong> 600 mm/s</li>
+
+         <li><strong>
+            {% if language == 'ka' %} ფენის სისქე: {% else %} Layer Thickness: {% endif %}
+         </strong> 0.1 - 0.35 mm</li>
+
+         <li><strong>
+            {% if language == 'ka' %} მასალის ტიპი: {% else %} Material Types: {% endif %}
+         </strong> PLA, ABS, TPU, PETG</li>
+
+         <li><strong>
+            {% if language == 'ka' %} ფაილის ფორმატი: {% else %} File Formats: {% endif %}
+         </strong> STL, OBJ</li>
+      </ul>
+   </div>
+</div>
+
+{% endblock %}
